@@ -2,17 +2,18 @@
     <x-slot:heading>
         Jobs Page
     </x-slot:heading>
-        <div>
-            <ul class="mt-40 flex flex-col items-center">
-                @foreach($jobs as $job)
-                    <li class="mb-4 flex flex-row items-center ">
-                        <a href="/jobs/{{ $job['id'] }}">
-                            <h1 class="text-2xl font-semibold  text-black hover:underline hover:text-blue-400">{{ $job['title'] }}:</h1>
+            <div class="space-y-4">
+                @foreach($jobs as $job)  
+                                  
+                        <a href="/jobs/{{ $job['id'] }}" class="block px-5 py-6 border border-gray-200 text-xl">
+                            <div class="border border-gray-200 rounded hover:underline hover:text-blue-500 text-sm">
+                                {{ $job->employer->name }}
+                            </div>
+                            <div>
+                                <h1><strong>{{ $job['title'] }}:</strong> Pays {{ $job['salary'] }} per year</h1>
+                            </div>
                         </a>
-                    </li>
-
                 @endforeach
-            </ul>
-            </ul>
-        </div>      
+            </div> 
+            <div class="p-4 text-3xl">{{ $jobs->links() }}</div>          
 </x-layout>
