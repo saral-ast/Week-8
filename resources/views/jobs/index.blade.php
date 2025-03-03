@@ -5,12 +5,12 @@
             <div class="space-y-4">
                 @foreach($jobs as $job)  
                                   
-                        <a href="/jobs/{{ $job['id'] }}" class="block px-5 py-6 border border-gray-200 text-xl">
+                        <a href="/jobs/{{ $job->id}}" class="block px-5 py-6 border border-gray-200 text-xl">
                             <div class="border border-gray-200 rounded hover:underline hover:text-blue-500 text-sm">
                                 {{ $job->employer->name }}
                             </div>
                             <div>
-                                <h1><strong>{{ $job['title'] }}:</strong> Pays {{ $job['salary'] }} per year</h1>
+                                <h1><strong>{{ $job->title }}:</strong> Pays {{ $job->salary }} per year</h1>
                             </div>
                         </a>
                 @endforeach

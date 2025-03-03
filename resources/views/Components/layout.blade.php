@@ -9,8 +9,6 @@
         <!-- Fonts -->
         <link rel="preconnect" href="https://fonts.bunny.net">
         <link href="https://fonts.bunny.net/css?family=instrument-sans:400,500,600" rel="stylesheet" />
-        <link href="https://cdn.jsdelivr.net/npm/flowbite@3.1.2/dist/flowbite.min.css" rel="stylesheet" />
-
 
         <!-- Styles / Scripts -->
         @vite(['resources/css/app.css', 'resources/js/app.js'])
@@ -47,14 +45,15 @@
 
         </nav>
         <header class="bg-white shadow">
-            <div class="max-w-7xl px-4 py-6 sm:px-6">
+            <div class="max-w-7xl px-4 py-6 sm:px-6 flex justify-between items-right">
                 <h1 class="text-3xl font-bold tracking-tight text-gray-900">{{ $heading }}</h1>
+                <x-button href="/jobs/create">+  Create Job</x-button>
             </div>
         </header>
 
         {{ $slot }}
 
-        <script src="https://cdn.jsdelivr.net/npm/flowbite@3.1.2/dist/flowbite.min.js"></script>
+      
 
         
     </body>
