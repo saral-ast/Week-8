@@ -47,7 +47,7 @@
         <header class="bg-white shadow">
             <div class="max-w-7xl px-4 py-6 sm:px-6 flex justify-between items-right">
                 <h1 class="text-3xl font-bold tracking-tight text-gray-900">{{ $heading }}</h1>
-                <x-button href="/jobs/create">+  Create Job</x-button>
+                <x-button href="/jobs/create">+ Create Job</x-button>
             </div>
         </header>
 
