@@ -2,8 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\Mail\JobPosted;
 use Illuminate\Http\Request;
 use App\Models\Job;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Gate;
+use Illuminate\Support\Facades\Mail;
+
 class JobController extends Controller
 {
     public function index(){
@@ -20,19 +25,23 @@ class JobController extends Controller
         ]);
         //Vlaidation....
     
-        Job::create([
+      $job =   Job::create([
             'title' => request('title'),
             'salary' => request('salary'),
             'employer_id' => 1,
         ]);
+
+        Mail::to($job->employer->user)->queue=(
+            new JobPosted($job)
+        );
         return redirect('/jobs');
     }
     public function show(Job $job){
         return view('jobs.show',['job' => $job]);
     }
     public function edit(Job $job){
+        // Gate::authorize('edit-job',$job);
         return view('jobs.edit',['job' => $job] );
-
     }
     public function update(Job $job){
         //authoriza... (on hold)

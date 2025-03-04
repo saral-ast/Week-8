@@ -13,48 +13,70 @@
         <!-- Styles / Scripts -->
         @vite(['resources/css/app.css', 'resources/js/app.js'])
     </head>
-    <body>
-        
+    <body class="min-h-screen flex flex-col">
+        <!-- Navigation Bar -->
+        <nav class="bg-white dark:bg-gray-900 border-b border-gray-200 dark:border-gray-800 shadow-sm">
+    <div class="max-w-screen-xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex items-center justify-between h-16">
+            <!-- Logo -->
+            <div class="flex items-center">
+                <img src="https://cdn.pixabay.com/photo/2016/12/28/08/15/hummingbird-1935665_960_720.png" 
+                     class="h-12 rounded-2xl mr-2" 
+                     alt="Logo" />
+                <span class="text-xl font-semibold text-gray-800 dark:text-white">Laravel</span>
+            </div>
 
-    <nav class="bg-white border-gray-200 dark:bg-gray-900">
-        <div class="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4"> 
-            <img src="https://cdn.pixabay.com/photo/2016/12/28/08/15/hummingbird-1935665_960_720.png" class="h-12 rounded-2xl mr-1.5" alt="Flowbite Logo" />
-        </a>
-        <div class="flex md:order-2 space-x-3 md:space-x-0 rtl:space-x-reverse">
-            <button type="button" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Get started</button>
-        </div>
-        <div class="items-center justify-between hidden w-full md:flex md:w-auto md:order-1" id="navbar-cta">
-            <ul class="flex flex-col font-medium p-4 md:p-0 mt-4 border border-gray-100 rounded-lg bg-gray-50 md:space-x-8 rtl:space-x-reverse md:flex-row md:mt-0 md:border-0 md:bg-white dark:bg-gray-800 md:dark:bg-gray-900 dark:border-gray-700">
-            <li>
-                <x-nav-link href="/" :active="request()->is( '/')">Home</x-nav-link>
-            </li>
-            <li>
-                    <x-nav-link href="/about" :active="request()->is( 'about')">About</x-nav-link>
-            </li>
-            <li>
-                    <x-nav-link href="/contact" :active="request()->is( 'contact')">Contact</x-nav-link>
-            </li>
-            <li>
-                     <x-nav-link href="/jobs" :active="request()->is( 'jobs')">Jobs</x-nav-link>
-            </li>
-            </ul>
-         
-        </div>
-        </div>
-       
+            <!-- Navigation Links -->
+            <div class="hidden md:flex items-center space-x-8">
+                <x-nav-link href="/" :active="request()->is('/')">Home</x-nav-link>
+                <x-nav-link href="/about" :active="request()->is('about')">About</x-nav-link>
+                <x-nav-link href="/contact" :active="request()->is('contact')">Contact</x-nav-link>
+                <x-nav-link href="/jobs" :active="request()->is('jobs')">Jobs</x-nav-link>
+                
+               
+            </div>
 
-        </nav>
+            <!-- Get Started Button -->
+            <div class="flex items-center px-1.5 gap-2">
+                @guest
+                    <x-nav-link href="/register" :active="request()->is('register')">Register</x-nav-link>
+                    <x-nav-link href="/login" :active="request()->is('login')">Login</x-nav-link>
+                @endguest
+                @auth
+                    <form action="/logout" method="POST">
+                        @csrf
+                        <x-form-button class="max-h-10">Log Out</x-form-button>
+                    </form>
+                @endauth
+            </div>
+        </div>
+    </div>
+</nav>
+
+        <!-- Page Header -->
         <header class="bg-white shadow">
-            <div class="max-w-7xl px-4 py-6 sm:px-6 flex justify-between items-right">
-                <h1 class="text-3xl font-bold tracking-tight text-gray-900">{{ $heading }}</h1>
-                <x-button href="/jobs/create">+ Create Job</x-button>
+            <div class="max-w-7xl mx-auto px-4 py-6 sm:px-6 lg:px-8 flex justify-between items-center">
+                <h1 class="text-3xl font-bold text-gray-900">{{ $heading }}</h1>
+                <x-button href="/jobs/create" class="flex items-center space-x-2">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                        <path fill-rule="evenodd" d="M10 3a1 1 0 011 1v5h5a1 1 0 110 2h-5v5a1 1 0 11-2 0v-5H4a1 1 0 110-2h5V4a1 1 0 011-1z" clip-rule="evenodd" />
+                    </svg>
+                    <span>Create Job</span>
+                </x-button>
+               
             </div>
         </header>
 
-        {{ $slot }}
+        <!-- Main Content -->
+        <main class="flex-1">
+            {{ $slot }}
+        </main>
 
-      
-
-        
+        <!-- Footer (Optional) -->
+        <footer class="bg-white border-t border-gray-200 mt-8">
+            <div class="max-w-7xl mx-auto px-4 py-6 sm:px-6 lg:px-8 text-center text-sm text-gray-500">
+                &copy; {{ date('Y') }} Laravel. All rights reserved.
+            </div>
+        </footer>
     </body>
 </html>

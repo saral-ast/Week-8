@@ -8,4 +8,5 @@
             <p class="mt-4 text-gray-600 text-2xl">This is the home page.</p>
 
         </div>      
+      
 </x-layout>
